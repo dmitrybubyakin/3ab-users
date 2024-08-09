@@ -29,12 +29,9 @@ export function UsersImportDialog({ trigger }: UsersImportDialogProps) {
       toast({ description: "Items imported successfully!" });
       setOpen(false);
     }, [toast]),
-    useCallback(
-      (description: string) => {
-        toast({ variant: "destructive", description });
-      },
-      [toast],
-    ),
+    useCallback(() => {
+      toast({ variant: "destructive", description: "Items importing failed!" });
+    }, [toast]),
   );
 
   return (

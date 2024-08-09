@@ -29,6 +29,9 @@ export function UserCreateDialog({ trigger }: UserCreateDialogProps) {
       toast({ description: "Item created successfully!" });
       setOpen(false);
     }, [toast]),
+    useCallback(() => {
+      toast({ variant: "destructive", description: "Item creating failed!" });
+    }, [toast]),
   );
 
   return (

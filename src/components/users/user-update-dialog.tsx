@@ -32,6 +32,9 @@ export function UserUpdateDialog({ trigger, user }: UserUpdateDialogProps) {
       toast({ description: "Item updated successfully!" });
       setOpen(false);
     }, [toast]),
+    useCallback(() => {
+      toast({ variant: "destructive", description: "Item updating failed!" });
+    }, [toast]),
   );
 
   return (

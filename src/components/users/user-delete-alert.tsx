@@ -1,6 +1,5 @@
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
@@ -26,6 +25,9 @@ export function UserDeleteAlert({ trigger, user }: UserDeleteAlertProps) {
     useCallback(() => {
       toast({ description: "Item deleted successfully!" });
       setOpen(false);
+    }, [toast]),
+    useCallback(() => {
+      toast({ variant: "destructive", description: "Item deleting faield!" });
     }, [toast]),
   );
 
