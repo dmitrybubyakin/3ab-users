@@ -9,25 +9,23 @@ import {
 } from "@3ab-users/components/ui/alert-dialog";
 import { Button } from "@3ab-users/components/ui/button";
 import { useToast } from "@3ab-users/components/ui/use-toast";
-import { useDeleteUser } from "@3ab-users/components/users/use-delete-user";
-import { User } from "@3ab-users/types/users";
+import { useDeleteAllUsers } from "@3ab-users/components/users/use-delete-all-users";
 import { useCallback, useState } from "react";
 
-type UserDeleteAlertProps = {
+type UsersDeleteAllAlertProps = {
   trigger: React.ReactNode;
-  user: User;
 };
 
-export function UserDeleteAlert({ trigger, user }: UserDeleteAlertProps) {
+export function UsersDeleteAllAlert({ trigger }: UsersDeleteAllAlertProps) {
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
-  const { handleDelete, isLoading } = useDeleteUser(
+  const { handleDelete, isLoading } = useDeleteAllUsers(
     useCallback(() => {
-      toast({ description: "Item deleted successfully!" });
+      toast({ description: "Items deleted successfully!" });
       setOpen(false);
     }, [toast]),
     useCallback(() => {
-      toast({ variant: "destructive", description: "Item deleting faieled!" });
+      toast({ variant: "destructive", description: "Items deleting failed!" });
     }, [toast]),
   );
 
@@ -39,7 +37,7 @@ export function UserDeleteAlert({ trigger, user }: UserDeleteAlertProps) {
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <Button onClick={() => handleDelete(user)} loading={isLoading}>
+          <Button onClick={() => handleDelete()} loading={isLoading}>
             Delete
           </Button>
           <AlertDialogCancel disabled={isLoading}>Cancel</AlertDialogCancel>
